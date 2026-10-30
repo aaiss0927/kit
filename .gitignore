@@ -1,0 +1,8 @@
+# never commit secrets or local noise
+.env
+*.env
+*.key
+*.pem
+*.log
+__pycache__/
+.DS_Store
