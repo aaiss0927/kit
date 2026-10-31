@@ -16,7 +16,7 @@
 | verification.md | 검증 명령·결과·남은 한계 | task-complete |
 | proposals/ | 요구 변경 제안(diff) | change-proposal |
 | concepts/ · index.md | (선택) 개념 1개 = 1페이지(frontmatter `sources:` 에 `파일:줄`) | 사람 |
-| RETRO.md | 마무리 회고 | retro-report |
+| RETRO.md · ARCHITECTURE.md | 마무리 회고 · 완성본 구조도(Mermaid) | retro-report |
 
 ## 근거의 무게
 - 기준은 과제 README·제공 자료다(제출물·형식·필수조건은 항상 README).

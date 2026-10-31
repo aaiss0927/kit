@@ -1,6 +1,6 @@
 ---
 name: task-kickoff
-description: "Start one plan item (for example T-3). Collect its acceptance criteria and related decisions and answers, add a verifiable checklist under the item in wiki/PLAN.md, and open an empty draft decision section. Use when the user says 'T-3 시작' or begins implementing an item. If the user also asked to implement, continue straight into implementation after the checklist. Never pushes. 작업 항목 착수 준비."
+description: "Start one plan item (for example T-3). Collect its acceptance criteria and related decisions and answers, add a verifiable checklist and test scenarios under the item in wiki/PLAN.md (plus a test file using the project's test tool or the standard library), and open an empty draft decision section. Use when the user says 'T-3 시작' or begins implementing an item. If the user also asked to implement, continue straight into implementation after the checklist. Never pushes. 작업 항목 착수 준비: 체크리스트·테스트 시나리오."
 license: MIT
 ---
 
@@ -17,16 +17,22 @@ license: MIT
 - 관련 결정·답변: `rg -n "<키워드>|T-n" wiki/decisions.md wiki/collab-log.md wiki/conflicts` (rg 가 없으면 `grep -rn`).
   이전 결정과 어긋나지 않도록 관련 내용을 3줄 이내로 요약해 보여준다.
 - 코드에서 건드릴 파일·모듈 후보를 찾는다(목록만).
+- UI(화면)가 있는 항목이면 ~/askills/skills/frontend-design/SKILL.md 가 있을 때 읽고 따른다. README 요구·업무 담당자 답이 우선이고, 외부 CDN·웹폰트는 쓰지 않는다.
 
 ## 2. 체크리스트 (PLAN.md 의 T-n 아래)
 
 ```
 - [ ] <검증 가능한 작은 단계 1>
 - [ ] <단계 2>
-- [ ] 수용 기준 검증 명령 실행 → wiki/verification.md 기록
+- [ ] 테스트 시나리오 실행(아래 `테스트:` 명령) → wiki/verification.md 기록
 ```
 
 - 수용 기준 1개를 확인 가능한 단계 몇 개로 나눈다. 너무 잘게도, 너무 뭉뚱그리지도 않는다.
+
+## 2-1. 테스트 시나리오 (PLAN.md 의 T-n 아래, 체크리스트 다음)
+- 수용 기준마다 `TS-n.1 [정상|경계|오류] 입력 → 기대 결과 (근거 README.md:줄 또는 Q-ID)` 형식으로 적는다. 기준마다 정상 1개 + 경계·오류 중 1개 이상.
+- 자동화할 수 있으면 테스트 파일을 구현보다 먼저(늦어도 함께) 만든다. 프로젝트에 있는 테스트 도구를 쓰고, 없으면 표준 도구(node:test, python unittest 등)로. 설치하지 않는다.
+- 실행 명령 한 줄을 T-n 아래 `테스트: <명령>` 으로 적는다. 자동화가 어려운 시나리오(화면 확인 등)는 수동 확인 절차로 적는다.
 
 ## 3. 결정 기록 자리 (wiki/decisions.md)
 

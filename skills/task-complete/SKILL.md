@@ -1,6 +1,6 @@
 ---
 name: task-complete
-description: "Close one plan item (for example T-3) before committing. Check the changes against the README, the business owner's answers and earlier decisions, ask the human about every contradiction, run the acceptance checks, record results in wiki/verification.md, mark the item's decisions stable and make one local commit 'T-n type: summary'. Never pushes. 항목 마무리: 일관성 점검 → 검증 → 로컬 커밋."
+description: "Close one plan item (for example T-3) before committing. Check the changes against the README, the business owner's answers and earlier decisions, ask the human about every contradiction, run the item's tests and acceptance checks, record results in wiki/verification.md, mark the item's decisions stable and make one local commit 'T-n type: summary'. Never pushes. 항목 마무리: 일관성 점검 → 검증 → 로컬 커밋."
 license: MIT
 ---
 
@@ -21,6 +21,7 @@ license: MIT
 - 모순마다 양쪽 원문 인용과 `파일:줄`을 보여주고 어떻게 할지 묻는다. **답을 받을 때까지 멈춘다.** 네가 고르지 않는다. 다 풀릴 때까지 반복한다.
 
 ## 3. 검증
+- 먼저 T-n 아래 `테스트:` 명령($task-kickoff 에서 만든 테스트)을 실행하고 시나리오별 통과·실패를 센다. 실패하면 고친 뒤 다시 실행한다. 테스트를 지우거나 기대값을 바꿔 통과시키지 않는다(요구가 바뀐 경우만 $change-proposal).
 - PLAN.md 의 수용 기준마다 확인 명령(테스트 우선; 서버는 사용자가 띄운 상태에서 `curl -s 127.0.0.1:<포트>`)을 실행하고 wiki/verification.md 에 추가한다:
 
 ```
